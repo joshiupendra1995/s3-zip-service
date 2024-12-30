@@ -18,13 +18,21 @@ repositories {
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	// Spring WebFlux for Reactive Programming
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+	// AWS SDK for S3
 	implementation 'software.amazon.awssdk:s3:2.29.24'
 	implementation 'software.amazon.awssdk:auth:2.29.24'
-	compileOnly 'org.projectlombok:lombok:1.18.36'
 
+	// Lombok
+	compileOnly 'org.projectlombok:lombok:1.18.36'
+	annotationProcessor 'org.projectlombok:lombok:1.18.36'
+
+	// Spring Boot Test for WebFlux
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'io.projectreactor:reactor-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 tasks.named('test') {
