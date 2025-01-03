@@ -102,9 +102,9 @@ public class S3Service {
     }
 
 
-    public String generatePresignedUrl(String bucketName, String crNumber, String year, String month, String fileName) {
+    public String generatePresignedUrl(String crNumber, String year, String month, String fileName) {
         String objectKey = String.join("/", crNumber, year, month, fileName);
-        GetObjectRequest getObjectRequest = GetObjectRequest.builder().bucket(bucketName).key(objectKey).build();
+        GetObjectRequest getObjectRequest = GetObjectRequest.builder().bucket(BUCKET_NAME).key(objectKey).build();
         GetObjectPresignRequest presignRequest = GetObjectPresignRequest.builder().getObjectRequest(getObjectRequest).signatureDuration(Duration.ofMinutes(5)).build();
         return s3Presigner.presignGetObject(presignRequest).url().toString();
     }

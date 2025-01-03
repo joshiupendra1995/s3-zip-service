@@ -11,7 +11,6 @@ import reactor.core.publisher.Mono;
 @RequestMapping("/v1/file")
 public class UploadDownloadController {
 
-    private static final String BUCKET_NAME = "upendra-28-bucket";
     private final S3Service s3Service;
 
     public UploadDownloadController(S3Service s3Service) {
@@ -32,7 +31,7 @@ public class UploadDownloadController {
 
     @GetMapping("/download/{crNumber}/{year}/{month}/{fileName}")
     public Mono<String> getSignedDownloadUrl(@PathVariable String crNumber, @PathVariable String year, @PathVariable String month, @PathVariable String fileName) {
-        String signedUrl = s3Service.generatePresignedUrl(BUCKET_NAME, crNumber, year, month, fileName);
+        String signedUrl = s3Service.generatePresignedUrl(crNumber, year, month, fileName);
         return Mono.just(signedUrl);
     }
 

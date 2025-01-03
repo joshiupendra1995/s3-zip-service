@@ -1,0 +1,8 @@
+scalar Upload
+type Mutation {
+    uploadFilesAsZip(crNumber: String!, year: String!, month: String!, files: [Upload!]!): String
+}
+
+type Query {
+    getSignedDownloadUrl(crNumber: String!, year: String!, month: String!, fileName: String!): String
+}
